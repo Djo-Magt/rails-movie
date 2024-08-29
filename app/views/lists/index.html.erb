@@ -1,0 +1,23 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/background.png);">
+  <div class="container text-center text-white">
+    <h1>Le Wagon brings <strong>tech skills</strong> to <strong>creative people</strong>!</h1>
+    <p>Change your life and learn to code at one of our campuses around the world.</p>
+    <button type="button" class="btn btn-flat btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      Add a Movie
+    </button>
+  </div>
+</div>
+
+<div data-controller="list">
+  <%= render "lists/modal", list: @list %>
+
+  <div class="container mt-5">
+    <div class="row">
+      <% @lists.each do |list| %>
+        <div class="col-md-4 mb-4" data-list-target="row">
+          <%= render "lists/cards", list: list %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

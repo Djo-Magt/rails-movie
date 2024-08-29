@@ -1,0 +1,10 @@
+<%= link_to list_path(list), class:"text-decoration-none" do %>
+  <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
+    <%= list.name  %>
+  </div>
+  <%# <%= link_to "x", list_path(list),
+    data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+    class: "ms-3 text-danger"
+  %>
+  <small class="text-right flex-shrink-0"><%= link_to "delete", list_path(list), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to remove #{list.name}"}, class: 'text-danger' %></small>
+<% end %>
