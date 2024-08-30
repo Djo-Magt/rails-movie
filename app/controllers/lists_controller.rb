@@ -3,7 +3,7 @@ class ListsController < ApplicationController
   before_action :set_list, only: [:show, :edit, :update, :destroy]
 
   def index
-    @lists = List.all
+    @lists = List.order(updated_at: :desc)
     @list = List.new
   end
 
@@ -29,6 +29,11 @@ class ListsController < ApplicationController
   end
 
   def update
+    if @list.update(list_params)
+      redirect_to lists_path
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy

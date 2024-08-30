@@ -1,6 +1,9 @@
-<%= @list.name  %>
-<span><%= @list.movies.size %> movies</span>
-
+<div class="position-relative">
+  <div class="card-category card-large" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path('dragon.jpg') %>)">
+    <h1><%= @list.name %></h1>
+  </div>
+  <span class="movie-tag"><%= pluralize(@list.movies.size, "movie") %></span>
+</div>
 
 <div class="container py-5">
   <div class="row">
@@ -16,3 +19,27 @@
     </div>
   </div>
 </div>
+
+
+  <div class="row my-2">
+    <% @list.movies.each do |movie| %>
+      <% favori = Favori.find_by(list: @list, movie: movie) %>
+      <div class="col-12 col-sm-6 mb-4" data-aos="zoom-in">
+        <div class="bg-white rounded shadow h-100">
+          <%= image_tag movie.poster_url, alt: movie.title, class: "movie-img rounded-top" %>
+          <div class="p-3 rounded-bottom d-flex flex-column">
+            <strong><%= movie.title %> <span class="text-muted font-weight-normal">• <%= movie.rating %> <i class="fas fa-star star-yellow"></i></span></strong>
+            <small class="text-muted"><%= movie.resume %></small>
+            <div class="d-flex align-items-end justify-content-between pt-4">
+              <div>
+                <i class="fas fa-quote-left me-2"></i><small class="flex-grow-1"><%= favori.text %></small>
+              </div>
+              <small class="text-right flex-shrink-0"><%= link_to "delete", favori_path(favori), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to remove #{movie.title} from your #{@list.name} list"}, class: 'text-danger' %></small>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <%= render "reviews/show", list: @list %>

@@ -11,11 +11,20 @@
 <div data-controller="list">
   <%= render "lists/modal", list: @list %>
 
-  <div class="container mt-5">
+  <div class="container mt-5" data-controller="toggle">
     <div class="row">
       <% @lists.each do |list| %>
         <div class="col-md-4 mb-4" data-list-target="row">
           <%= render "lists/cards", list: list %>
+          <div class="container py-5 d-none" data-toggle-target="togglableElement">
+            <div class="row">
+              <div class="col-12 col-md-6 offset-lg-3">
+                <div class="bg-white rounded p-3 shadow">
+                  <%= render "lists/edit", list: list %>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       <% end %>
     </div>

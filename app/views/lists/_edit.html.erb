@@ -1,0 +1,6 @@
+
+<%= simple_form_for list do |f| %>
+  <%= f.input :name, placeholder: 'Titre de la liste', label: false, error: "ajoutez un titre" %>
+  <%= f.submit 'Modifier', class: 'btn btn-flat btn-primary' %>
+  <button type="button" class="btn btn-flat btn-secondary" data-bs-dismiss="modal">Close</button>
+<% end %>

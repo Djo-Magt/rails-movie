@@ -5,6 +5,7 @@ export default class extends Controller {
 
   static targets = ["row", "form", "modal"]
 
+
   send(event) {
     event.preventDefault();
 
@@ -23,10 +24,6 @@ export default class extends Controller {
           this.rowTarget.insertAdjacentHTML("beforeend", data.inserted_item)
 
         } else {
-          console.log(this.formTarget)
-          console.log(data.form)
-
-
 
           const modal = this.formTarget.closest('.modal')
           const modalInstance = bootstrap.Modal.getInstance(modal);
