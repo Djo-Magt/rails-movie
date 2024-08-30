@@ -8,6 +8,8 @@ class FavorisController < ApplicationController
     if @favori.save
       redirect_to list_path(@list)
     else
+      @reviews = @list.reviews.order(created_at: :desc)
+      @review = Review.new(list: @list)
       render "lists/show", status: :unprocessable_entity
     end
   end

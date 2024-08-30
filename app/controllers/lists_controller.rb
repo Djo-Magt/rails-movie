@@ -23,6 +23,8 @@ class ListsController < ApplicationController
 
   def show
     @favori = Favori.new
+    @review = Review.new(list: @list)
+    @reviews = @list.reviews.order(created_at: :desc)
   end
 
   def edit
